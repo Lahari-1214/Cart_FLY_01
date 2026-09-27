@@ -3,8 +3,10 @@
 # Day 2: Admin Signup + OTP + Password Hashing + Insert
 # ------------------------------------------------------
 
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, make_response, url_for
 from flask_mail import Mail, Message
+from utils.utils.pdf_generator import generate_pdf
+
 import mysql.connector
 import bcrypt      # for hashing password
 import random      # to generate OTP
@@ -46,6 +48,8 @@ def get_db_connection():
         database=config.DB_NAME
     )
     return conn
+
+
 
 
 # ------------------------------------------------------
