@@ -18,14 +18,18 @@ DB_NAME = "cartfly_db"
 MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 587
 MAIL_USE_TLS = True
-MAIL_USERNAME = 'janicode249@gmail.com'      # sender email
-MAIL_PASSWORD = 'qciu jhss megm heyk'    # Gmail App Password
+MAIL_USERNAME = 'leelanarayan1214@gmail.com'      # sender email
+MAIL_PASSWORD = 'gafp czfe beoa svju'    # Gmail App Password
 
 
 
-RAZORPAY_KEY_ID = "rzp_test_RjUGK6hO0z5ZU9"
-RAZORPAY_KEY_SECRET = "BpaLXGCGbqqFJtjJETnv7a37"
+RAZORPAY_KEY_ID = "rzp_test_Th0m457Jq37rzM"
+RAZORPAY_KEY_SECRET = "smdwYj60RVMk8duS7QqZ9MWV"
 
 
 # rzp_test_RjUGK6hO0z5ZU9,   rzp_test_RjU3xQko7gVLBx
 # BpaLXGCGbqqFJtjJETnv7a37,         qRNqA9Ac4Vmr54ZJKuZoDzWi
+# gafp czfe beoa svju
+
+# APIKey : rzp_test_Th0m457Jq37rzM
+#secrete key : smdwYj60RVMk8duS7QqZ9MWV
