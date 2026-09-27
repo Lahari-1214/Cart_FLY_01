@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Successful</title>
+    <style>
+        .success-container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .success-container h2 {
+            color: green;
+        }
+
+        .order-details {
+            text-align: left;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .items-list {
+            margin-top: 20px;
+        }
+
+        .items-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .items-list table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background-color: #0077ff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #005fcc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-container">
+
+    <h2>🎉 Your Order is Confirmed!</h2>
+    <p>Thank you for shopping with <strong>SmartCart</strong>.</p>
+
+    <div class="order-details">
+        <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+        <p><strong>Payment ID:</strong> {{ order.razorpay_payment_id }}</p>
+        <p><strong>Amount Paid:</strong> ₹{{ order.amount }}</p>
+        <p><strong>Order Date:</strong> {{ order.created_at }}</p>
+        <p><strong>Delivery Address:</strong><br> {{ order.address }}</p>
+
+    </div>
+
+    <div class="items-list">
+        <h3>Order Summary</h3>
+
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price (₹)</th>
+            </tr>
+
+            {% for it in items %}
+            <tr>
+                <td>{{ it.product_name }}</td>
+                <td>{{ it.quantity }}</td>
+                <td>{{ it.price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <br>
+
+    <a href="/user/products" class="btn">Continue Shopping</a>
+    <a href="/user/my-orders" class="btn">View My Orders</a>
+    <!-- Download invoice button -->
+<a href="/user/download-invoice/{{ order.order_id }}" class="btn">Download Invoice (PDF)</a>
+
+
+</div>
+
+
+
+
+</body>
+</html>

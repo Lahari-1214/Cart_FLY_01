@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Orders</title>
+    <style>
+        .container {
+            width: 70%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .order-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-card h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .order-info {
+            line-height: 1.5;
+        }
+
+        .view-btn {
+            padding: 8px 12px;
+            background-color: #0077ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .view-btn:hover {
+            background-color: #005fcc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>📦 My Orders</h2>
+
+        {% if orders|length == 0 %}
+        <p>You have not placed any orders yet.</p>
+        <a href="/user/products">Start Shopping</a>
+
+        {% else %}
+
+        {% for order in orders %}
+        <div class="order-card">
+
+            <h3>Order #{{ order.order_id }}</h3>
+
+            <div class="order-info">
+                <p><strong>Amount:</strong> ₹{{ order.amount }}</p>
+                <p><strong>Status:</strong> {{ order.payment_status }}</p>
+                <p><strong>Date:</strong> {{ order.created_at }}</p>
+            </div>
+
+            <a href="/user/order-success/{{ order.order_id }}" class="view-btn">
+                View Order Details
+            </a>
+
+            <!-- Download invoice button -->
+            <a href="/user/download-invoice/{{ order.order_id }}" class="btn">Download Invoice (PDF)</a>
+
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

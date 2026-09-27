@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+</head>
+<body>
+
+<h2>Your Cart</h2>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <p style="color:red;">{{ message }}</p>
+  {% endfor %}
+{% endwith %}
+
+{% if not cart %}
+    <p>Your cart is empty.</p>
+    <a href="/user/products">Shop Now</a>
+{% else %}
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+
+    {% for pid, item in cart.items() %}
+    <tr>
+        <td><img src="/static/uploads/product_images/{{ item.image }}" width="80"></td>
+        <td>{{ item.name }}</td>
+        <td>₹{{ item.price }}</td>
+
+        <td>
+            <a href="/user/cart/decrease/{{ pid }}"> - </a>
+            {{ item.quantity }}
+            <a href="/user/cart/increase/{{ pid }}"> + </a>
+        </td>
+
+        <td>₹{{ item.price * item.quantity }}</td>
+
+        <td><a href="/user/cart/remove/{{ pid }}">Remove</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<h3>Grand Total: ₹{{ grand_total }}</h3>
+
+<br><br>
+<a href="/user/pay" 
+   style="padding:10px 20px; background:#28a745; color:white; text-decoration:none; border-radius:5px;">
+   Proceed to Pay
+</a>
+
+<br><br>
+
+<a href="/user/products">Continue Shopping</a>
+
+{% endif %}
+
+</body>
+</html>

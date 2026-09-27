@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <p style="color:green;">{{ message }}</p>
+  {% endfor %}
+{% endwith %}
+
+<h2>Welcome, {{ user_name }}!</h2>
+
+<br>
+  <a href="/user/products">Browse Products</a><br><br> 
+<br>
+
+
+<a href="/user/cart">Cart ({{ (session.get('cart') or {}) | length }})</a>
+
+
+<br><br>
+<a href="/user/add-address">Add Address</a>
+
+
+
+
+<br><br>
+<a href="/user-logout">Logout</a>
+
+</body>
+</html>
+
+

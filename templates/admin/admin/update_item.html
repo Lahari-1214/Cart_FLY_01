@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Product</title>
+</head>
+<body>
+
+<h2>Update Product</h2>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <p style="color:green;">{{ message }}</p>
+  {% endfor %}
+{% endwith %}
+
+<form method="POST" action="/admin/update-item/{{ product.product_id }}" enctype="multipart/form-data">
+
+    <label>Product Name:</label><br>
+    <input type="text" name="name" value="{{ product.name }}" required><br><br>
+
+    <label>Description:</label><br>
+    <textarea name="description" required>{{ product.description }}</textarea><br><br>
+
+    <label>Category:</label><br>
+    <input type="text" name="category" value="{{ product.category }}" required><br><br>
+
+    <label>Price:</label><br>
+    <input type="number" step="0.01" name="price" value="{{ product.price }}" required><br><br>
+
+    <label>Old Image:</label><br>
+    <img src="/static/uploads/product_images/{{ product.image }}" width="120"><br><br>
+
+    <label>Choose New Image (Optional):</label><br>
+    <input type="file" name="image" accept="image/*"><br><br>
+
+    <button type="submit">Update Product</button>
+</form>
+
+<br>
+<a href="/admin/item-list">Back to Product List</a>
+
+</body>
+</html>

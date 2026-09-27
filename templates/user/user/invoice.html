@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .invoice-box {
+            width: 80%;
+            margin: auto;
+            border: 1px solid #eee;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f5f5f5; }
+    </style>
+</head>
+<body>
+
+<div class="invoice-box">
+    <div class="header">
+        <h2>SmartCart Invoice</h2>
+        <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+        <p><strong>Date:</strong> {{ order.created_at }}</p>
+    </div>
+
+    <h3>Customer Details</h3>
+    <p><strong>User ID:</strong> {{ order.user_id }}</p>
+    <h3>Delivery Address</h3>
+    <p>{{ order.address }}</p>
+
+
+    <h3>Items</h3>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price (₹)</th>
+        </tr>
+
+        {% for it in items %}
+        <tr>
+            <td>{{ it.product_name }}</td>
+            <td>{{ it.quantity }}</td>
+            <td>{{ it.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3 style="text-align:right;">Grand Total: ₹{{ order.amount }}</h3>
+</div>
+
+</body>
+</html>

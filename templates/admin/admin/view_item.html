@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+
+<h2>Product Details</h2>
+
+<img src="/static/uploads/product_images/{{ product.image }}" width="200"><br><br>
+
+<p><strong>Name:</strong> {{ product.name }}</p>
+<p><strong>Description:</strong> {{ product.description }}</p>
+<p><strong>Category:</strong> {{ product.category }}</p>
+<p><strong>Price:</strong> ₹{{ product.price }}</p>
+
+<br>
+<a href="/admin/item-list">Back to List</a>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!-- templates/verify_otp.html -->
+<!-- Day 2: OTP Verification Page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Verify OTP</title>
+</head>
+
+<body>
+
+    <h2>Enter OTP</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} mt-2">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/verify-otp">
+        <label>OTP:</label><br>
+        <input type="text" name="otp" required><br><br>
+
+        <label>Create Password:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <button type="submit">Verify & Register</button>
+    </form>
+
+</body>
+
+</html>
