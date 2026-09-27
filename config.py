@@ -11,7 +11,7 @@ SECRET_KEY = "3456"   # used for sessions
 DB_HOST = "localhost"
 DB_USER = "root"
 DB_PASSWORD = "leela@123"  # keep empty if no password
-DB_NAME = "cartfly_db"
+DB_NAME = "cartfly"
 
 
 # Email SMTP Configuration (Using Gmail)
