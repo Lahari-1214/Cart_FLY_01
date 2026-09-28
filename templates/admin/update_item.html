@@ -1,44 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Update Product</title>
-</head>
-<body>
-
-<h2>Update Product</h2>
-
-<!-- Flash Messages -->
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Update Product - Cart_Fly</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><nav class="navbar admin-nav"><a class="brand" href="/admin-dashboard">🛒 Cart_Fly Admin</a><div class="nav-links"><a href="/admin/item-list">Products</a><a href="/admin/profile">Profile</a><a href="/admin-logout">Logout</a></div></nav>
+<main class="container narrow"><div class="card"><h1 class="page-title">Update Product</h1>
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% for category, message in messages %}
-    <p style="color:green;">{{ message }}</p>
-  {% endfor %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
 {% endwith %}
 
 <form method="POST" action="/admin/update-item/{{ product.product_id }}" enctype="multipart/form-data">
-
-    <label>Product Name:</label><br>
-    <input type="text" name="name" value="{{ product.name }}" required><br><br>
-
-    <label>Description:</label><br>
-    <textarea name="description" required>{{ product.description }}</textarea><br><br>
-
-    <label>Category:</label><br>
-    <input type="text" name="category" value="{{ product.category }}" required><br><br>
-
-    <label>Price:</label><br>
-    <input type="number" step="0.01" name="price" value="{{ product.price }}" required><br><br>
-
-    <label>Old Image:</label><br>
-    <img src="/static/uploads/product_images/{{ product.image }}" width="120"><br><br>
-
-    <label>Choose New Image (Optional):</label><br>
-    <input type="file" name="image" accept="image/*"><br><br>
-
-    <button type="submit">Update Product</button>
-</form>
-
-<br>
-<a href="/admin/item-list">Back to Product List</a>
-
-</body>
-</html>
+<div class="form-group"><label>Product Name</label><input name="name" value="{{ product.name }}" required></div><div class="form-group"><label>Description</label><textarea name="description" required>{{ product.description }}</textarea></div><div class="form-group"><label>Category</label><input name="category" value="{{ product.category }}" required></div><div class="form-group"><label>Price</label><input type="number" step="0.01" name="price" value="{{ product.price }}" required></div>
+<div class="form-group"><label>Current Image</label><br><img class="detail-image" style="height:180px;" src="/static/uploads/product_images/{{ product.image }}"></div>
+<div class="form-group"><label>Choose New Image (Optional)</label><input type="file" name="image" accept="image/*"></div>
+<button class="btn" type="submit">Update Product</button> <a class="btn btn-secondary" href="/admin/item-list">Back</a>
+</form></div></main></body></html>

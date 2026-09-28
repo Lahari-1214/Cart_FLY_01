@@ -1,16 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Payment Successful</title>
-</head>
-<body>
-
-<h2 style="color:green;">Payment Successful!</h2>
-
-<p>Payment ID: {{ payment_id }}</p>
-<p>Order ID: {{ order_id }}</p>
-
-<a href="/user/products">Continue Shopping</a>
-
-</body>
-</html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Payment Successful</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><main class="container narrow"><div class="card success-card"><div class="success-icon">✅</div><h1>Payment Successful!</h1>
+<p>Payment ID: <strong>{{ payment_id }}</strong></p><p>Order ID: <strong>{{ order_id }}</strong></p><br><a class="btn" href="/user/products">Continue Shopping</a></div></main></body></html>

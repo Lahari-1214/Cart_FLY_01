@@ -1,38 +1,17 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Admin Dashboard</title>
-</head>
-
-<body>
-    <!-- Flash messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cart_Fly - Admin Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><nav class="navbar admin-nav"><a class="brand" href="/admin-dashboard">🛒 Cart_Fly Admin</a><div class="nav-links"><a href="/admin/add-item">Add Product</a><a href="/admin/item-list">Products</a><a href="/admin/profile">Profile</a><a href="/admin-logout">Logout</a></div></nav>
+<main class="container">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
     {% for category, message in messages %}
-    <p style="color:rgb(13, 193, 76);">{{ message }}</p>
+      <div class="flash {{ category }}">{{ message }}</div>
     {% endfor %}
-    {% endwith %}
+  {% endif %}
+{% endwith %}
 
-
-    <h2>Welcome, {{ admin_name }}</h2>   
-    <br><br>
-    
-    <a href="/admin/add-item">Add Product</a> <hr><br>
-
-    <a href="/admin/item-list">View All Products</a> <br><br>
-
-   
-
-
-    <!-- Logout Button -->
-    <a href="/admin-logout">Logout</a>
-
-    <br><br>
-    <!--Update Profile  -->
-    <a href="/admin/profile">Update Profile</a>
-
-    <p>This is your admin dashboard.</p>
-
-</body>
-
-</html>
+<section class="hero"><h1>Welcome, {{ admin_name }}</h1><p>Manage your Cart_Fly store from one place.</p></section>
+<div class="dashboard-grid"><div class="stat-card"><div class="icon">➕</div><h3>Add Product</h3><p>Create a new store product.</p><br><a class="btn" href="/admin/add-item">Add Product</a></div>
+<div class="stat-card"><div class="icon">📦</div><h3>Products</h3><p>View and manage your products.</p><br><a class="btn" href="/admin/item-list">View Products</a></div>
+<div class="stat-card"><div class="icon">👤</div><h3>Profile</h3><p>Update administrator details.</p><br><a class="btn" href="/admin/profile">Update Profile</a></div></div>
+</main></body></html>

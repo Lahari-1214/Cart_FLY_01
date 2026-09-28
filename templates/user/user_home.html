@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>User Dashboard</title>
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cart_Fly - Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
 <body>
+<nav class="navbar"><a class="brand" href="/user-dashboard">🛒 Cart_Fly</a><div class="nav-links">
+<a href="/user/products">Products</a><a href="/user/my-orders">Orders</a><a href="/user/cart">Cart ({{ (session.get('cart') or {}) | length }})</a><a href="/user/add-address">Address</a><a href="/user-logout">Logout</a>
+</div></nav>
+<main class="container">
 
-<!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% for category, message in messages %}
-    <p style="color:green;">{{ message }}</p>
-  {% endfor %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
 {% endwith %}
 
-<h2>Welcome, {{ user_name }}!</h2>
-
-<br>
-  <a href="/user/products">Browse Products</a><br><br> 
-<br>
-
-
-<a href="/user/cart">Cart ({{ (session.get('cart') or {}) | length }})</a>
-
-
-<br><br>
-<a href="/user/add-address">Add Address</a>
-
-
-
-
-<br><br>
-<a href="/user-logout">Logout</a>
-
+<section class="hero"><h1>Welcome, {{ user_name }}!</h1><p>Ready to discover something you love?</p><a class="btn" href="/user/products">Browse Products</a></section>
+<div class="dashboard-grid">
+<div class="stat-card"><div class="icon">🛍️</div><h3>Products</h3><p>Browse available products.</p></div>
+<div class="stat-card"><div class="icon">🛒</div><h3>Your Cart</h3><p>{{ (session.get('cart') or {}) | length }} item(s) in cart.</p></div>
+<div class="stat-card"><div class="icon">📦</div><h3>Orders</h3><p>Track your previous orders.</p></div>
+</div>
+</main>
 </body>
 </html>
-
-

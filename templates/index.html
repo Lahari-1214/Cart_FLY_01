@@ -1,13 +1,25 @@
-<!-- templates/index.html -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>SmartCart - Home</title>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart_Fly - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Welcome to SmartCart</h1>
-    <p>Flask project setup successful!</p>
+<nav class="navbar">
+    <a class="brand" href="/">🛒 Cart_Fly</a>
+    <div class="nav-links">
+        <a href="/user-login">Login</a>
+        <a href="/user-register">Register</a>
+    </div>
+</nav>
+<main class="container">
+    <section class="hero">
+        <h1>Shop smarter with Cart_Fly.</h1>
+        <p>Your simple Flask e-commerce experience for browsing products, managing your cart and completing secure payments.</p>
+        <a class="btn" href="/user/products">Explore Products</a>
+    </section>
+</main>
+<footer class="footer">© Cart_Fly</footer>
 </body>
 </html>

@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Product Details</title>
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{{ product.name }} - Cart_Fly</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-  {% for category, message in messages %}
-    <p style="color:green;">{{ message }}</p>
-  {% endfor %}
+<nav class="navbar"><a class="brand" href="/user-dashboard">🛒 Cart_Fly</a><div class="nav-links"><a href="/user/products">Products</a><a href="/user/cart">Cart</a><a href="/user/my-orders">Orders</a></div></nav>
+<main class="container">
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
 {% endwith %}
 
-
-<h2>{{ product.name }}</h2>
-
-<img src="/static/uploads/product_images/{{ product.image }}" width="300"><br><br>
-
-<p><strong>Description:</strong> {{ product.description }}</p>
-<p><strong>Category:</strong> {{ product.category }}</p>
-<p><strong>Price:</strong> ₹{{ product.price }}</p>
-<br>
-
-
-<form action="/user/add-to-cart/{{ product.product_id }}" method="GET">
-    <button type="submit">Add to Cart</button>
-</form>
-<a href="/user/add-to-cart/{{ product.product_id }}">Add to Cart</a>
-
-
-
-<br> <br>
-<a href="/user/products">Back to Products</a>
-
+<div class="detail-grid">
+<div class="card"><img class="detail-image" src="/static/uploads/product_images/{{ product.image }}" alt="{{ product.name }}"></div>
+<div class="card"><div class="category">{{ product.category }}</div><h1>{{ product.name }}</h1><div class="price">₹{{ product.price }}</div>
+<p class="description">{{ product.description }}</p>
+<form action="/user/add-to-cart/{{ product.product_id }}" method="GET"><button class="btn" type="submit">🛒 Add to Cart</button></form>
+<br><a href="/user/products">← Back to Products</a></div>
+</div>
+</main>
 </body>
 </html>

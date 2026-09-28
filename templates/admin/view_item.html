@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Product Details</title>
-</head>
-<body>
-
-<h2>Product Details</h2>
-
-<img src="/static/uploads/product_images/{{ product.image }}" width="200"><br><br>
-
-<p><strong>Name:</strong> {{ product.name }}</p>
-<p><strong>Description:</strong> {{ product.description }}</p>
-<p><strong>Category:</strong> {{ product.category }}</p>
-<p><strong>Price:</strong> ₹{{ product.price }}</p>
-
-<br>
-<a href="/admin/item-list">Back to List</a>
-
-</body>
-</html>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Product Details - Cart_Fly</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><nav class="navbar admin-nav"><a class="brand" href="/admin-dashboard">🛒 Cart_Fly Admin</a><div class="nav-links"><a href="/admin/item-list">Products</a><a href="/admin/profile">Profile</a><a href="/admin-logout">Logout</a></div></nav>
+<main class="container"><div class="detail-grid"><div class="card"><img class="detail-image" src="/static/uploads/product_images/{{ product.image }}"></div><div class="card"><h1>{{ product.name }}</h1><div class="price">₹{{ product.price }}</div><p><strong>Category:</strong> {{ product.category }}</p><p class="description">{{ product.description }}</p><a class="btn" href="/admin/update-item/{{ product.product_id }}">Edit Product</a> <a class="btn btn-secondary" href="/admin/item-list">Back to List</a></div></div></main></body></html>

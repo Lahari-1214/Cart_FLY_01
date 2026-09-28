@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Payment</title>
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cart_Fly - Payment</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
 <body>
-
-<h2>Complete Your Payment</h2>
-
-<p>Total Amount: ₹{{ amount }}</p>
-
-<button id="rzp-button">Pay Now</button>
-
-<!-- part of templates/user/payment.html -->
+<nav class="navbar"><a class="brand" href="/user-dashboard">🛒 Cart_Fly</a></nav>
+<main class="container narrow"><div class="card" style="text-align:center;">
+<div style="font-size:48px;">💳</div><h1>Complete Your Payment</h1><p class="muted">Your order total</p><div class="grand-total">₹{{ amount }}</div><br>
+<button id="rzp-button" class="btn btn-success">Pay Now</button>
+</div></main>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script>
 var options = {
     "key": "{{ key_id }}",
@@ -23,40 +18,24 @@ var options = {
     "description": "Order Payment",
     "order_id": "{{ order_id }}",
     "handler": function (response){
-        // Build a small form and POST to server for verification
         var form = document.createElement("form");
         form.method = "POST";
         form.action = "/verify-payment";
-
         var fields = {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature
         };
-
         for (var name in fields) {
             var input = document.createElement("input");
-            input.type = "hidden";
-            input.name = name;
-            input.value = fields[name];
+            input.type = "hidden"; input.name = name; input.value = fields[name];
             form.appendChild(input);
         }
-
-        document.body.appendChild(form);
-        form.submit();
+        document.body.appendChild(form); form.submit();
     },
-    "prefill": {
-        // optionally prefill user info
-    }
+    "prefill": {}
 };
-
 var rzp = new Razorpay(options);
-document.getElementById('rzp-button').onclick = function(e){
-    rzp.open();
-    e.preventDefault();
-}
+document.getElementById('rzp-button').onclick = function(e){ rzp.open(); e.preventDefault(); }
 </script>
-
-
-</body>
-</html>
+</body></html>
